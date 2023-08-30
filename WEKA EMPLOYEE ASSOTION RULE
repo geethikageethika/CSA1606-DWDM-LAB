@@ -1,0 +1,58 @@
+@relation employee-1
+@attribute age {youth, middle, senior}
+@attribute income {high, medium, low}
+@attribute class {A, B, C}
+@data
+youth, high, A
+youth,medium,B
+youth, low, C
+middle, low, C
+middle, medium, C
+middle, high, A
+senior, low, C
+senior, medium, B
+senior, high, B
+middle, high, B
+
+
+output
+=== Run information ===
+
+Scheme:       weka.associations.Apriori -N 10 -T 0 -C 0.9 -D 0.05 -U 1.0 -M 0.1 -S -1.0 -c -1
+Relation:     employee-1
+Instances:    10
+Attributes:   3
+              age
+              income
+              class
+=== Associator model (full training set) ===
+
+
+Apriori
+=======
+
+Minimum support: 0.15 (2 instances)
+Minimum metric <confidence>: 0.9
+Number of cycles performed: 17
+
+Generated sets of large itemsets:
+
+Size of set of large itemsets L(1): 9
+
+Size of set of large itemsets L(2): 22
+
+Size of set of large itemsets L(3): 10
+
+Best rules found:
+
+ 1. income=low 3 ==> class=C 3    <conf:(1)> lift:(2.5) lev:(0.18) [1] conv:(1.8)
+ 2. class=A 2 ==> income=high 2    <conf:(1)> lift:(2.5) lev:(0.12) [1] conv:(1.2)
+ 3. age=youth class=A 1 ==> income=high 1    <conf:(1)> lift:(2.5) lev:(0.06) [0] conv:(0.6)
+ 4. age=youth income=high 1 ==> class=A 1    <conf:(1)> lift:(5) lev:(0.08) [0] conv:(0.8)
+ 5. age=youth class=B 1 ==> income=medium 1    <conf:(1)> lift:(3.33) lev:(0.07) [0] conv:(0.7)
+ 6. age=youth income=medium 1 ==> class=B 1    <conf:(1)> lift:(2.5) lev:(0.06) [0] conv:(0.6)
+ 7. age=youth class=C 1 ==> income=low 1    <conf:(1)> lift:(3.33) lev:(0.07) [0] conv:(0.7)
+ 8. age=youth income=low 1 ==> class=C 1    <conf:(1)> lift:(2.5) lev:(0.06) [0] conv:(0.6)
+ 9. age=middle class=A 1 ==> income=high 1    <conf:(1)> lift:(2.5) lev:(0.06) [0] conv:(0.6)
+10. age=middle class=B 1 ==> income=high 1    <conf:(1)> lift:(2.5) lev:(0.06) [0] conv:(0.6)
+
