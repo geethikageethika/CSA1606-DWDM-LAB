@@ -1,0 +1,69 @@
+@relation customer
+@attribute name {x,y,z,u,v,l,w,q,r,n}
+@attribute age {youth,middle,senior}
+@attribute income {high,medium,low}
+@attribute class {A,B}
+@data
+x,youth,high,A
+y,youth,low,B
+z,middle,high,A
+u,middle,low,B
+v,senior,high,A
+l,senior,low,B
+w,youth,high,A
+q,youth,low,B
+r,middle,high,A
+n,senior,high,A
+
+output
+=== Run information ===
+
+Scheme:       weka.clusterers.SimpleKMeans -init 0 -max-candidates 100 -periodic-pruning 10000 -min-density 2.0 -t1 -1.25 -t2 -1.0 -N 2 -A "weka.core.EuclideanDistance -R first-last" -I 500 -num-slots 1 -S 10
+Relation:     customer
+Instances:    10
+Attributes:   4
+              name
+              age
+              income
+              class
+Test mode:    evaluate on training data
+
+
+=== Clustering model (full training set) ===
+
+
+kMeans
+======
+
+Number of iterations: 2
+Within cluster sum of squared errors: 14.000000000000004
+
+Initial starting points (random):
+
+Cluster 0: u,middle,low,B
+Cluster 1: w,youth,high,A
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                         Cluster#
+Attribute    Full Data          0          1
+                (10.0)      (4.0)      (6.0)
+============================================
+name                 x          y          x
+age              youth      youth      youth
+income            high        low       high
+class                A          B          A
+
+
+
+
+Time taken to build model (full training data) : 0 seconds
+
+=== Model and evaluation on training set ===
+
+Clustered Instances
+
+0       4 ( 40%)
+1       6 ( 60%)
+
