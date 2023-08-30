@@ -1,0 +1,106 @@
+@relation employee
+@attribute name {x,y,z,a,b}
+@attribute id numeric
+@attribute salary {low,medium,high}
+@attribute exp numeric
+@attribute gender {male,female}
+@attribute phone numeric
+@data
+x,101,low,2,male,250311
+y,102,high,3,female,251665
+z,103,medium,1,male,240238
+a,104,low,5,female,200200
+b,105,high,2,male,240240
+
+OUTPUT:
+=== Run information ===
+
+Scheme:       weka.clusterers.MakeDensityBasedClusterer -M 1.0E-6 -W weka.clusterers.SimpleKMeans -- -init 0 -max-candidates 100 -periodic-pruning 10000 -min-density 2.0 -t1 -1.25 -t2 -1.0 -N 2 -A "weka.core.EuclideanDistance -R first-last" -I 500 -num-slots 1 -S 10
+Relation:     employee
+Instances:    5
+Attributes:   6
+              name
+              id
+              salary
+              exp
+              gender
+              phone
+Test mode:    evaluate on training data
+
+
+=== Clustering model (full training set) ===
+
+MakeDensityBasedClusterer: 
+
+Wrapped clusterer: 
+kMeans
+======
+
+Number of iterations: 2
+Within cluster sum of squared errors: 6.715843748978546
+
+Initial starting points (random):
+
+Cluster 0: a,104,low,5,female,200200
+Cluster 1: y,102,high,3,female,251665
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                           Cluster#
+Attribute     Full Data           0           1
+                  (5.0)       (1.0)       (4.0)
+===============================================
+name                  x           a           x
+id                  103         104      102.75
+salary              low         low        high
+exp                 2.6           5           2
+gender             male      female        male
+phone          236530.8      200200    245613.5
+
+
+
+Fitted estimators (with ML estimates of variance):
+
+Cluster: 0 Prior probability: 0.2857
+
+Attribute: name
+Discrete Estimator. Counts =  1 1 1 2 1  (Total = 6)
+Attribute: id
+Normal Distribution. Mean = 104 StdDev = 1.5811
+Attribute: salary
+Discrete Estimator. Counts =  2 1 1  (Total = 4)
+Attribute: exp
+Normal Distribution. Mean = 5 StdDev = 1.5166
+Attribute: gender
+Discrete Estimator. Counts =  1 2  (Total = 3)
+Attribute: phone
+Normal Distribution. Mean = 200200 StdDev = 21014.0813
+
+Cluster: 1 Prior probability: 0.7143
+
+Attribute: name
+Discrete Estimator. Counts =  2 2 2 1 2  (Total = 9)
+Attribute: id
+Normal Distribution. Mean = 102.75 StdDev = 1.479
+Attribute: salary
+Discrete Estimator. Counts =  2 2 3  (Total = 7)
+Attribute: exp
+Normal Distribution. Mean = 2 StdDev = 0.7071
+Attribute: gender
+Discrete Estimator. Counts =  4 2  (Total = 6)
+Attribute: phone
+Normal Distribution. Mean = 245613.5 StdDev = 5395.7775
+
+
+Time taken to build model (full training data) : 0 seconds
+
+=== Model and evaluation on training set ===
+
+Clustered Instances
+
+0      1 ( 20%)
+1      4 ( 80%)
+
+
+Log likelihood: -16.49763
